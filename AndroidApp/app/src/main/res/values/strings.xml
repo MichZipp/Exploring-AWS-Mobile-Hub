@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CowTracker</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_authenticator">AuthenticatorActivity</string>
+    <string name="title_activity_facebook_authenticator">FacebookAuthenticatorActivity</string>
+    <string name="facebook_app_id">192300911394850</string>
+    <string name="fb_login_protocol_scheme">fb192300911394850</string>
+</resources>
