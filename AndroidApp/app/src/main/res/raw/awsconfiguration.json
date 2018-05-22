@@ -14,9 +14,9 @@
   },
   "CognitoUserPool": {
     "Default": {
-      "PoolId": "eu-central-1_id7ghRxBs",
-      "AppClientId": "1l3to3p686trth4vr9mb9gocch",
-      "AppClientSecret": "ebt6ogckk33c7768031u432v0fkvvorfmgqm0tdfh1pj4r7jjl3",
+      "PoolId": "eu-central-1_gecDQwVEA",
+      "AppClientId": "5maom9u07fb7lnci9jg8un4aju",
+      "AppClientSecret": "18vg5h71coc08ui4bn53g78pu2rghuuohrv5u4bd03db89aciv1d",
       "Region": "eu-central-1"
     }
   },
@@ -30,9 +30,5 @@
     "Default": {
       "Region": "us-east-1"
     }
-  },
-  "FacebookSignIn": {
-    "AppId": "192300911394850",
-    "Permissions": "public_profile"
   }
 }

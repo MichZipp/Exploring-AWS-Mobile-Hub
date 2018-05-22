@@ -2,7 +2,7 @@ package de.zipperle.cowtracker;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 
 import com.amazonaws.mobile.auth.facebook.FacebookButton;
 import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
@@ -11,7 +11,7 @@ import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.AWSStartupHandler;
 import com.amazonaws.mobile.client.AWSStartupResult;
 
-public class AWSAuthenticatorActivity extends AppCompatActivity {
+public class AWSAuthenticatorActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class AWSAuthenticatorActivity extends AppCompatActivity {
                 AuthUIConfiguration config =
                         new AuthUIConfiguration.Builder()
                                 .userPools(true)  // true? show the Email and Password UI
-                                .signInButton(FacebookButton.class)
+                                //.signInButton(FacebookButton.class)
                                 .logoResId(R.mipmap.cow_foreground) // Change the logo
                                 .backgroundColor(Color.GRAY) // Change the backgroundColor
                                 .isBackgroundColorFullScreen(true) // Full screen backgroundColor the backgroundColor full screenff
@@ -35,6 +35,8 @@ public class AWSAuthenticatorActivity extends AppCompatActivity {
                 SignInUI signin = (SignInUI) AWSMobileClient.getInstance().getClient(AWSAuthenticatorActivity.this, SignInUI.class);
                 signin.login(AWSAuthenticatorActivity.this, MapsActivity.class).authUIConfiguration(config).execute();
             }
+
+
         }).execute();
     }
 }

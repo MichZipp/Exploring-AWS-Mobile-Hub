@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CowTracker</string>
+    <string name="app_name">Cow Tracker</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_authenticator">AuthenticatorActivity</string>
     <string name="title_activity_facebook_authenticator">FacebookAuthenticatorActivity</string>
