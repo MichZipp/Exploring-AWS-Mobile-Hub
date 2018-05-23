@@ -5,4 +5,6 @@
     <string name="title_activity_facebook_authenticator">FacebookAuthenticatorActivity</string>
     <string name="facebook_app_id">192300911394850</string>
     <string name="fb_login_protocol_scheme">fb192300911394850</string>
+    <string name="menu_logout">Logout</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>
