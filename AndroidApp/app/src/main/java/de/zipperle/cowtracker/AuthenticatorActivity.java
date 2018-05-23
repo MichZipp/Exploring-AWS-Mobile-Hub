@@ -11,8 +11,6 @@ import com.amazonaws.mobile.auth.facebook.FacebookButton;
 import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
 import com.amazonaws.mobile.auth.ui.SignInUI;
 import com.amazonaws.mobile.client.AWSMobileClient;
-import com.amazonaws.mobile.client.AWSStartupHandler;
-import com.amazonaws.mobile.client.AWSStartupResult;
 
 public class AuthenticatorActivity extends AppCompatActivity {
 
@@ -52,7 +50,7 @@ public class AuthenticatorActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "showSignIn");
         AuthUIConfiguration config = new AuthUIConfiguration.Builder()
                 .userPools(true)  // true? show the Email and Password UI
-                //.signInButton(FacebookButton.class)
+                .signInButton(FacebookButton.class)
                 .logoResId(R.mipmap.cow_foreground) // Change the logo
                 .backgroundColor(Color.GRAY) // Change the backgroundColor
                 .isBackgroundColorFullScreen(true) // Full screen backgroundColor the backgroundColor full screenff
