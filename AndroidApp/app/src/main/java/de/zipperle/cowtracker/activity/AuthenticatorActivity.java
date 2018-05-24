@@ -1,4 +1,4 @@
-package de.zipperle.cowtracker;
+package de.zipperle.cowtracker.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import com.amazonaws.mobile.auth.facebook.FacebookButton;
 import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
 import com.amazonaws.mobile.auth.ui.SignInUI;
 import com.amazonaws.mobile.client.AWSMobileClient;
+
+import de.zipperle.cowtracker.R;
 
 public class AuthenticatorActivity extends AppCompatActivity {
 
