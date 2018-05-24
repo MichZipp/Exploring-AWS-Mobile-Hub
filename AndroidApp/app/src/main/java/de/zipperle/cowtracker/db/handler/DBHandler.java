@@ -69,7 +69,7 @@ public class DBHandler {
 
                 List<Locations> locations = dynamoDBMapper.query(Locations.class, queryExpression);
 
-                locationQueryListener.onNewLocations(locations);
+                locationQueryListener.updateCowLocations(locations);
             }
         }).start();
     }
