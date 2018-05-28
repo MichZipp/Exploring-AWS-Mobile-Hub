@@ -13,17 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.amazonaws.http.HttpMethodName;
-import com.amazonaws.mobile.api.ida0wpi69e3d.CalculateDistanceMobileHubClient;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.client.AWSMobileClient;
-import com.amazonaws.mobileconnectors.apigateway.ApiClientFactory;
-import com.amazonaws.mobileconnectors.apigateway.ApiRequest;
-import com.amazonaws.mobileconnectors.apigateway.ApiResponse;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
-import com.amazonaws.util.IOUtils;
-import com.amazonaws.util.StringUtils;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,13 +28,11 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.zipperle.cowtracker.R;
+import de.zipperle.cowtracker.cloudlogic.DistanceCalculator;
 import de.zipperle.cowtracker.db.datastructure.Locations;
 import de.zipperle.cowtracker.db.handler.DBHandler;
 import de.zipperle.cowtracker.db.listener.LocationQueryListener;
@@ -62,7 +53,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private List<Locations> locations;
     private List<Marker> markers;
 
-    private CalculateDistanceMobileHubClient apiClient;
+    private DistanceCalculator calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +84,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         dbHandler.setLocationQueryListener(this);
         dbHandler.generateTestLocations();
 
-        // Create the client
-        apiClient = new ApiClientFactory()
-                .credentialsProvider(AWSMobileClient.getInstance().getCredentialsProvider())
-                .build(CalculateDistanceMobileHubClient.class);
-
-        calculateDistance(2.44, 2.44, 2.44, 2.44);
+        calculator = new DistanceCalculator();
     }
 
     @Override
@@ -178,9 +164,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             // Getting longitude of the current location
             double longitude = location.getLongitude();
 
-            // Creating a LatLng object for the current location
-            LatLng latLng = new LatLng(latitude, longitude);
-
             myPosition = new LatLng(latitude, longitude);
 
             Marker tmp = mMap.addMarker(new MarkerOptions()
@@ -199,7 +182,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void run() {
                 for(Locations location: locations) {
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    String title = location.getName();
+
+                    Double distance = calculator.calculateDistance(myPosition.latitude, myPosition.longitude, latLng.latitude, latLng.longitude);
+
+                    String title = location.getName() + ": " + distance + "km";
                     Marker tmp = mMap.addMarker(new MarkerOptions().position(latLng).title(title));
                     markers.add(tmp);
                 }
@@ -220,70 +206,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         int padding = (int) (width * 0.10);
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
         mMap.animateCamera(cu);
-    }
-
-    public void calculateDistance(double lat1, double lng1, double lat2, double lng2) {
-        // Create components of api request
-        final String method = "GET";
-
-        final String path = "/calculateDistance";
-
-        final String body = "";
-        final byte[] content = body.getBytes(StringUtils.UTF8);
-
-        final Map parameters = new HashMap<>();
-        parameters.put("lang", "en_US");
-        parameters.put("lat1", Double.toString(lat1));
-        parameters.put("lng1", Double.toString(lng1));
-        parameters.put("lat2", Double.toString(lat2));
-        parameters.put("lng2", Double.toString(lng2));
-
-        final Map headers = new HashMap<>();
-
-        // Use components to create the api request
-        ApiRequest localRequest =
-                new ApiRequest(apiClient.getClass().getSimpleName())
-                        .withPath(path)
-                        .withHttpMethod(HttpMethodName.valueOf(method))
-                        .withHeaders(headers)
-                        .addHeader("Content-Type", "application/json")
-                        .withParameters(parameters);
-
-        // Only set body if it has content.
-        if (body.length() > 0) {
-            localRequest = localRequest
-                    .addHeader("Content-Length", String.valueOf(content.length))
-                    .withBody(content);
-        }
-
-        final ApiRequest request = localRequest;
-
-        // Make network call on background thread
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.d(LOG_TAG,
-                            "Invoking API w/ Request : " +
-                                    request.getHttpMethod() + ":" +
-                                    request.getPath());
-
-                    final ApiResponse response = apiClient.execute(request);
-
-                    final InputStream responseContentStream = response.getContent();
-
-                    if (responseContentStream != null) {
-                        final String responseData = IOUtils.toString(responseContentStream);
-                        Log.d(LOG_TAG, "Response : " + responseData);
-                    }
-
-                    Log.d(LOG_TAG, response.getStatusCode() + " " + response.getStatusText());
-
-                } catch (final Exception exception) {
-                    Log.e(LOG_TAG, exception.getMessage(), exception);
-                    exception.printStackTrace();
-                }
-            }
-        }).start();
     }
 }
