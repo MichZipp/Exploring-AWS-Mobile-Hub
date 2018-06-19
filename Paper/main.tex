@@ -6,6 +6,7 @@
 \usepackage[acronym]{glossaries}
 \usepackage{subcaption}
 \usepackage[bookmarksopen, bookmarksdepth=2, breaklinks=true]{hyperref}
+\usepackage[official]{eurosym}
 \let\labelindent\relax
 
 % *** GRAPHICS RELATED PACKAGES ***
@@ -15,7 +16,9 @@
 \fi
 
 
-\newacronym{ble}{BLE}{Bluetooth Low Energy}
+\newacronym{mbaas}{MBaaS}{Mobile Backend as a Service}
+\newacronym{sdk}{SDK}{Software Development Kit}
+\newacronym{aws}{AWS}{Amazon Web Services}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -55,6 +58,9 @@
 % *** START OF SECTIONS ***--------------------------------------------
 
 \input{Sections/Einfuerung}
+\input{Section/Anbieter}
+\input{Section/AWSMobileHub}
+\input{Section/CowTracker}
 
 % *** END OF SECTIONS ***---------------------------------------------
 
@@ -204,18 +210,74 @@
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
-\bibitem{EmotionTrackingGSR}
-Keum Young Sung: A Suggestion to Improve User-Friendliness Based
-on Monitoring Computer User’s Emotions (2017)
-\bibitem{EmotionTrackingGaze}
-Zsolt Jank'o, Levente Hajder: Improving Human-Computer Interaction
-by Gaze Tracking (2012)
-\bibitem{MicrosoftAzure}
-"Microsoft Azure Cognitive Services: Emotionserkennung".
-\url{https://azure.microsoft.com/de-de/services/cognitive-services/face/#recognition}. Accessed 13.06.2018.
-\bibitem{SpeechInformation}
-S. Ramakrishnan, Ibrahiem M.M. El Emary: Speech emotion recognition approaches in human computer interactiong (2011)
+\bibitem{AmazonLambda}
+"Amazon Lambda"
+\url{https://aws.amazon.com/de/lambda/} 
+Accessed 18.06.2018
 
+\bibitem{AmazonDynamoDB}
+"Amazon DynamoDB"
+\url{https://aws.amazon.com/de/dynamodb/}
+Accessed 18.06.2018
+
+\bibitem{AmazonCloudWatch}
+"Amazon Cloud Watch"
+\url{https://aws.amazon.com/de/cloudwatch/}
+Accessed 18.06.2018
+
+\bibitem{AmazonPinpoint}
+"Amazon Pinpoint"
+\url{https://aws.amazon.com/de/pinpoint/}
+Accessed 18.06.2018
+
+\bibitem{AmazonCognito}
+"Amazon Cognito"
+\url{https://aws.amazon.com/de/cognito/}
+Accessed 19.06.2018
+
+\bibitem{techbeacon}
+"TechBeacon - How choose right MBaas"
+\url{https://techbeacon.com/how-choose-right-mbaas-google-firebase-apple-icloud-or-kinvey}
+Accessed 18.06.2018
+
+\bibitem{applecloudkit}
+"Apple Cloud Kit"
+\url{https://developer.apple.com/documentation/cloudkit}
+Accessed 18.06.2018
+
+\bibitem{progresskinvey}
+"Progress Kinvey"
+\url{https://www.progress.com/kinvey/}
+Accessed 18.06.2018
+
+\bibitem{googlefirebase}
+"Google Firebase"
+\url{https://firebase.google.com/}
+Accessed 18.06.2018
+
+\bibitem{kumulos}
+"Kumulos"
+\url{https://www.kumulos.com/}
+Accessed 19.06.2018
+
+\bibitem{canival}
+"Karnival - 5 best \gls{mbaas} alternatives to parse"
+\url{http://carnival.io/mobile-insights/5-best-mbaas-alternatives-to-parse-2/}
+Accessed 19.06.2018
+
+\bibitem{back4app}
+"back4app"
+\url{https://www.back4app.com/}
+Accessed 19.06.2018
+
+\bibitem{parse}
+"Parse"
+\url{https://www.back4app.com/}
+Accessed 19.06.2018
+
+\bibitem{statistacloudmarketshare}
+"Statista - Cloud Market Share"
+\url{https://www.statista.com/chart/7994/cloud-market-share/}
 
 \end{thebibliography}
 
