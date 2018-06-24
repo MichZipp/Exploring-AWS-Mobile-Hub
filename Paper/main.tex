@@ -7,6 +7,7 @@
 \usepackage{subcaption}
 \usepackage[bookmarksopen, bookmarksdepth=2, breaklinks=true]{hyperref}
 \usepackage[official]{eurosym}
+\usepackage{listings}
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
@@ -22,6 +23,7 @@
 \newacronym{rest}{REST}{Representational State Transfer}
 \newacronym{iot}{IoT}{Internet of Things}
 \newacronym{cdn}{CDN}{Content Delivery Network}
+\newacronym{ide}{IDE}{Integrated Development Environment}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -45,6 +47,7 @@
 
 \begin{abstract}
 %\boldmath
+Mobile Anwendung benötigen meistens ein Backend um beispielsweise die Nutzer der Anwendung zu verwalten oder Daten in einer Datenbank zu speichern. Die Konfiguration der traditionellen Backends benötigt meist ein Spezialisten und wenn sich die Anzahl der Nutzer drastisch ändert, können die zur Verfügung stehenden Ressourcen nicht mehr ausreichen. Ein \gls{mbaas} soll dies ändern, dabei kann der Entwickler einfach Cloud Services wie Datenbank, Nutzermanagement und mehr in einfachen Schritten konfigurieren und muss sich nicht mehr um die Ressourcen kümmern. Dieser Artikel zeigt auf, welche \gls{mbaas} Anbieter aktuell auf dem Mark existieren und behandelt dabei \gls{aws} Mobile Hub genauer. Es werden die zur Verfügung stehenden Cloud Service beschrieben und anhand einer Android App wird gezeigt, wie \gls{aws} Mobile Hub eingesetzt werden kann und die Entwicklung vereinfacht.
 
 \end{abstract}
 
@@ -60,10 +63,12 @@
 
 % *** START OF SECTIONS ***--------------------------------------------
 
-\input{Sections/Einfuerung}
+\input{Section/Einfuerung}
 \input{Section/Anbieter}
 \input{Section/AWSMobileHub}
 \input{Section/CowTracker}
+\input{Section/Erfahrungen}
+\input{Section/Fazit}
 
 % *** END OF SECTIONS ***---------------------------------------------
 
