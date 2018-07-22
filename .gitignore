@@ -6,3 +6,8 @@
 /Paper/main.synctex.gz
 /Paper/IEEEtran_HOWTO.pdf
 /Paper/Sections/*.log
+/AndroidApp/app/src/main/res/raw/awsconfiguration.json
+test
+androidTest
+debug
+release
